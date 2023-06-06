@@ -168,6 +168,17 @@
             </LeetcodeEditor>
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/leetcode/editor/en/[230]Kth Smallest Element in a BST.py">
+          <value>
+            <LeetcodeEditor>
+              <option name="contentPath" value="$PROJECT_DIR$/leetcode/editor/en/doc/content/[230]Kth Smallest Element in a BST.md" />
+              <option name="frontendQuestionId" value="leetcode.com230" />
+              <option name="host" value="leetcode.com" />
+              <option name="path" value="$PROJECT_DIR$/leetcode/editor/en/[230]Kth Smallest Element in a BST.py" />
+              <option name="titleSlug" value="kth-smallest-element-in-a-bst" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/leetcode/editor/en/[235]Lowest Common Ancestor of a Binary Search Tree.py">
           <value>
             <LeetcodeEditor>
