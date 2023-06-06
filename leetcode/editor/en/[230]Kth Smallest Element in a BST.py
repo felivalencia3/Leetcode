@@ -1,6 +1,5 @@
 # leetcode submit region begin(Prohibit modification and deletion)
 # Definition for a binary tree node.
-import heapq
 from typing import Optional
 
 
@@ -13,6 +12,8 @@ class TreeNode:
 
 class Solution:
     def kthSmallest(self, root: Optional[TreeNode], k: int) -> int:
+        """
+        # Heap Solution: O(n log n)
         result = []
 
         def inorder(node: Optional[TreeNode]):
@@ -24,16 +25,33 @@ class Solution:
             inorder(node.right)
 
         inorder(root)
-        heapq.heapify(result)
+        return result[k - 1]
+        """
 
-        # Perform k-1 extract-min operations
-        for _ in range(k - 1):
-            heapq.heappop(result)
+        # Inorder traversal iteratively
+        # Using a stack
+        # Go as far left as possible. Add nodes you've passed to a stack (you'll go back to these).
+        # When you reach null, start going back up stack.
+        # the number of times you pop from the stack is k. k=1 is the first elem in stack, etc
+        # for each of these, go right and add these to stack, then try to go left inside these.
+        n = 0
+        stack = []
+        curr = root
 
-        return heapq.heappop(result)
+        while curr and stack:
+            # Go left as much as possible, add nodes visited to stack
+            while curr:
+                stack.append(curr)
+                curr = curr.left
+
+            # When we reached end of left-streak, go back up stack
+            curr = stack.pop()
+            n += 1  # Counter of how many nodes we've popped (this will equal k)
+            if n == k:
+                return curr.val
+            # If n isn't k yet, move right, and try to go as left as possible again.
+            curr = curr.right
 
 
 # leetcode submit region end(Prohibit modification and deletion)
-# [3,1,4,null,2]
-root = TreeNode(3, TreeNode(1, None, TreeNode(2)), TreeNode(4))
-print(Solution().kthSmallest(root, 2))
+print(Solution().kthSmallest(TreeNode(3), 1))
