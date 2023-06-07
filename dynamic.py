@@ -123,4 +123,48 @@ def howSumVideo(targetSum, numbers):
     return None
 
 
-print(howSumVideo(7, [5, 3, 4, 7]))
+def bestSum(target, numbers):
+    # have to check every possibility
+    # base case:
+    if target == 0:
+        return []
+    if target < 0:
+        return None
+
+    shortest_combination = None
+    for num in numbers:
+        rem = target - num
+        combination = bestSum(rem, numbers)
+        if combination is not None:
+            current_combination = [*combination, num]
+            if shortest_combination is None or len(current_combination) < len(shortest_combination):
+                shortest_combination = current_combination
+
+    return shortest_combination
+
+
+def memo_bestSum(target, numbers, memo={}):
+    if target in memo:
+        return memo[target]
+    if target == 0:
+        return []
+    if target < 0:
+        return None
+
+    shortest_combination = None
+    for num in numbers:
+        rem = target - num
+        combination = memo_bestSum(rem, numbers, memo)
+        if combination is not None:
+            current_combination = [*combination, num]
+            if shortest_combination is None or len(current_combination) < len(shortest_combination):
+                shortest_combination = current_combination
+
+    memo[target] = shortest_combination
+    return shortest_combination
+
+
+target = 800
+numbers = [1, 2, 5, 25]
+print(memo_bestSum(target, numbers))
+print(bestSum(target, numbers))
