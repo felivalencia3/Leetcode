@@ -89,7 +89,7 @@ def memo_canSum(targetSum, numbers, memo):
     return False
 
 
-res = []
+result = []
 
 
 def memo_howSum(targetSum, numbers, memo={}):
@@ -102,11 +102,25 @@ def memo_howSum(targetSum, numbers, memo={}):
     for num in numbers:
         if memo_howSum(targetSum - num, numbers):
             memo[targetSum] = True
-            res.append(num)
+            result.append(num)
             return True
 
     return False
 
 
-print(memo_howSum(7, []))
-print(res)
+def howSumVideo(targetSum, numbers):
+    if targetSum == 0:
+        return []
+    if targetSum < 0:
+        return None
+
+    for num in numbers:
+        rem = targetSum - num
+        res = howSumVideo(rem, numbers)
+        if res is not None:
+            return [*res, num]
+
+    return None
+
+
+print(howSumVideo(7, [5, 3, 4, 7]))
