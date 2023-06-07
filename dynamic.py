@@ -68,3 +68,45 @@ def canSum(targetSum: int, numbers: List[int]) -> bool:
             return True
 
     return False
+
+
+def memo_canSum(targetSum, numbers, memo):
+    # memo = { targetSum : (bool, list)
+    # when true, add targetSum to list
+    # you're returning the whole tuple. if memo[0] then add yourself to tuple[1]
+    if targetSum in memo:
+        return memo[targetSum][0]
+    if targetSum == 0:
+        return [True, []]
+    if targetSum < 0:
+        return [False, []]
+    for num in numbers:
+        if canSum(targetSum - num, numbers):
+            memo[targetSum][0] = True
+            return True
+
+    memo[targetSum][0] = False
+    return False
+
+
+res = []
+
+
+def memo_howSum(targetSum, numbers, memo={}):
+    if targetSum in memo:
+        return memo[targetSum]
+    if targetSum == 0:
+        return True
+    if targetSum < 0:
+        return False
+    for num in numbers:
+        if memo_howSum(targetSum - num, numbers):
+            memo[targetSum] = True
+            res.append(num)
+            return True
+
+    return False
+
+
+print(memo_howSum(7, []))
+print(res)
