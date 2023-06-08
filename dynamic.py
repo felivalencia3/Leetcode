@@ -164,7 +164,38 @@ def memo_bestSum(target, numbers, memo={}):
     return shortest_combination
 
 
-target = 800
-numbers = [1, 2, 5, 25]
-print(memo_bestSum(target, numbers))
-print(bestSum(target, numbers))
+def canConstruct(target, word_bank, memo={}):
+    if target in memo:
+        return memo[target]
+    if len(target) == 0:
+        return True
+    for word in word_bank:
+        if target[:len(word)] == word:
+            if canConstruct(target[len(word):], word_bank):
+                memo[target] = True
+                return True
+
+    memo[target] = False
+    return False
+
+
+def countConstruct(target, wordBank, memo={}):
+    # memo: {target: bool}
+    # if true, inc counter
+    counter = 0
+    if target in memo:
+        return memo[target]
+
+    if len(target) == 0:
+        return 1
+    for word in wordBank:
+        if target[:len(word)] == word:
+            counter += countConstruct(target[len(word):], wordBank, memo)
+
+    memo[target] = counter
+    return counter
+
+
+print(countConstruct("eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
+                     ["e", "ee", "eee", "eee", "eeee", "eeeee", "eeeeeee", "eeeeeeeeee"
+                      ]))
