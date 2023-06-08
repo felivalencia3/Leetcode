@@ -1,6 +1,6 @@
 # Fibonacci numbers
 # Traditional recursive fib
-from typing import Dict, List
+from typing import Dict, List, Optional
 
 
 def trad_fib(n):
@@ -244,4 +244,18 @@ def tab_canSum(target: int, numbers: List[int]):
     return table[-1]
 
 
-print(tab_canSum(7, [5, 3, 4]))
+def tab_howSum(target: int, numbers: List[int]):
+    table: Optional[List] = [None for _ in range(target + 1)]
+    # Seed base values
+    table[0] = []
+    # Loop through non-None values
+    for i in range(target + 1):
+        if table[i] is not None:
+            for num in numbers:
+                if i + num < len(table):
+                    table[i + num] = table[i] + [num]
+
+    return table[-1]
+
+
+print(tab_howSum(7, [5, 2, 3, 7]))
