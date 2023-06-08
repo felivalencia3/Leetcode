@@ -231,4 +231,17 @@ def gridTraveler(m, n):
     return table[m - 1][n - 1]
 
 
-print(gridTraveler(3, 3))
+def tab_canSum(target: int, numbers: List[int]):
+    table = [False] * (target + 1)
+    # Base values
+    table[0] = True
+    # Iterate through True values in table
+    for i in range(target + 1):
+        if table[i]:
+            for num in numbers:
+                if i + num < len(table):
+                    table[i + num] = True
+    return table[-1]
+
+
+print(tab_canSum(7, [5, 3, 4]))
