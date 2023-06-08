@@ -14,7 +14,7 @@ def fibonacci_memoized(n: int, memo: Dict[int, int] = None) -> int:
     """Returns the nth Fibonacci number using memoization.
 
     Args:
-        n: The index of the Fibonacci number to compute.
+        n: The index of the Fibonacci number to comp ute.
         memo: A dictionary to store previously computed Fibonacci numbers.
 
     Returns:
@@ -196,6 +196,39 @@ def countConstruct(target, wordBank, memo={}):
     return counter
 
 
-print(countConstruct("eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
-                     ["e", "ee", "eee", "eee", "eeee", "eeeee", "eeeeeee", "eeeeeeeeee"
-                      ]))
+# Tabulation
+def fib(n):
+    table = [0] * (n + 1)
+    # Seed table
+    table[1] = 1
+
+    # Iterate through table from 0 to n, inclusive
+    for i in range(0, n + 1):
+        # look ahead two positions
+        if i < n:
+            table[i + 1] += table[i]
+        if i < n - 1:
+            table[i + 2] += table[i]
+
+    return table[n]
+
+
+def gridTraveler(m, n):
+    table = [[0 for _ in range(n)] for _ in range(m)]
+    # Seed values
+    # Only one way to travel through a 1 x 1 size table.
+    table[0][0] = 1
+
+    # Loop through 2d grid
+    for i in range(m):
+        for j in range(n):
+            curr = table[i][j]
+            if j + 1 < n:
+                table[i][j + 1] += curr
+            if i + 1 < m:
+                table[i + 1][j] += curr
+
+    return table[m - 1][n - 1]
+
+
+print(gridTraveler(3, 3))
