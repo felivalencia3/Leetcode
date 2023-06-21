@@ -14,9 +14,9 @@ def fibonacci_memoized(n: int, memo: Dict[int, int] = None) -> int:
     """Returns the nth Fibonacci number using memoization.
 
     Args:
-        n: The index of the Fibonacci number to comp ute.
-        memo: A dictionary to store previously computed Fibonacci numbers.
+        :x
 
+        memo: A dictionary to store previously computed Fibonacci numbers.
     Returns:
         The nth Fibonacci number.
     """
@@ -180,7 +180,7 @@ def canConstruct(target, word_bank, memo={}):
 
 
 def countConstruct(target, wordBank, memo={}):
-    # memo: {target: bool}
+    # memo: {target: boo}
     # if true, inc counter
     counter = 0
     if target in memo:
