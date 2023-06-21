@@ -168,6 +168,17 @@
             </LeetcodeEditor>
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/leetcode/editor/en/[212]Word Search II.py">
+          <value>
+            <LeetcodeEditor>
+              <option name="contentPath" value="$PROJECT_DIR$/leetcode/editor/en/doc/content/[212]Word Search II.md" />
+              <option name="frontendQuestionId" value="leetcode.com212" />
+              <option name="host" value="leetcode.com" />
+              <option name="path" value="$PROJECT_DIR$/leetcode/editor/en/[212]Word Search II.py" />
+              <option name="titleSlug" value="word-search-ii" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/leetcode/editor/en/[226]Invert Binary Tree.py">
           <value>
             <LeetcodeEditor>
@@ -209,6 +220,17 @@
               <option name="host" value="leetcode.com" />
               <option name="path" value="$PROJECT_DIR$/leetcode/editor/en/[28]Find the Index of the First Occurrence in a String.py" />
               <option name="titleSlug" value="find-the-index-of-the-first-occurrence-in-a-string" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/leetcode/editor/en/[295]Find Median from Data Stream.py">
+          <value>
+            <LeetcodeEditor>
+              <option name="contentPath" value="$PROJECT_DIR$/leetcode/editor/en/doc/content/[295]Find Median from Data Stream.md" />
+              <option name="frontendQuestionId" value="leetcode.com295" />
+              <option name="host" value="leetcode.com" />
+              <option name="path" value="$PROJECT_DIR$/leetcode/editor/en/[295]Find Median from Data Stream.py" />
+              <option name="titleSlug" value="find-median-from-data-stream" />
             </LeetcodeEditor>
           </value>
         </entry>

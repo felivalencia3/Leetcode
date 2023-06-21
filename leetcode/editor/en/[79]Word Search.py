@@ -1,23 +1,43 @@
+from collections import Counter
 from typing import List
 
 
-# leetcode submit region begin(Prohibit modification and deletion)
 class Solution:
     def exist(self, board: List[List[str]], word: str) -> bool:
-        # Attempt at backtracking
-        # List of choices made
-        path = []
+        ROWS, COLS = len(board), len(board[0])
 
-        def backtrack_exists(path: List, choices: List) -> bool:
-            # check if all words in path are == word
-            if [board[i][j] for i, j in path] == list(word):
+        if len(word) > ROWS * COLS:
+            return False
+
+        count = Counter(sum(board, []))
+
+        for c, countWord in Counter(word).items():
+            if count[c] < countWord:
+                return False
+
+        if count[word[0]] > count[word[-1]]:
+            word = word[::-1]
+
+        path = set()
+
+        def dfs(r, c, i):
+            if i == len(word):
                 return True
+            if (r < 0 or c < 0 or
+                    r >= ROWS or c >= COLS or
+                    word[i] != board[r][c] or
+                    (r, c) in path):
+                return False
 
-            # recursively try different valid choices for next step in path
-            for choice in choices:
-                # choices are [(i + 1, j), (i - 1, j), (i, j + 1), (i, j - 1)]
-                # check if next choice is valid
-                # i.e
-                if :
+            path.add((r, c))
+            res = (dfs(r + 1, c, i + 1) or
+                   dfs(r - 1, c, i + 1) or
+                   dfs(r, c + 1, i + 1) or
+                   dfs(r, c - 1, i + 1))
+            path.remove((r, c))
+            return res
 
-# leetcode submit region end(Prohibit modification and deletion)
+        for r in range(ROWS):
+            for c in range(COLS):
+                if dfs(r, c, 0): return True
+        return False
