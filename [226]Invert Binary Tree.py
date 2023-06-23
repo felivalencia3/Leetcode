@@ -12,14 +12,13 @@ class TreeNode:
 
 class Solution:
     def invertTree(self, root: Optional[TreeNode]) -> Optional[TreeNode]:
-        # Base case, reached bottom of tree
-        if not root:
-            return None
+        if root:
+            root.left, root.right = self.invertTree(root.right), self.invertTree(root.left)
+            return root
 
-        root.left, root.right = root.right, root.left
 
-        self.invertTree(root.left)
-        self.invertTree(root.right)
-
-        return root
 # leetcode submit region end(Prohibit modification and deletion)
+
+stack = [1]
+stack += 2, 3
+print(stack)
