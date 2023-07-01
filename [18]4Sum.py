@@ -18,7 +18,7 @@ class Solution:
                     quad.pop()
                 return
             left, right = start, len(nums) - 1
-            while left < right:
+           while left < right:
                 if nums[left] + nums[right] < helper_target:
                     left += 1
                 elif nums[left] + nums[right] > helper_target:
