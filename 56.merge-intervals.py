@@ -9,16 +9,15 @@ class Solution:
     def merge(self, intervals: list[list[int]]) -> list[list[int]]:
         # sort all intervals by start
         intervals = sorted(intervals, key=lambda x:x[0])
+        int1, int2 = [], intervals[0]
         res = []
-        int1 = []
-        for i in range(len(intervals)):
-            int2 = intervals[i]
-            if res and res[-1][1] >= int2[0]:
+        for i in range(len(intervals) - 1):
+            int1, int2 = intervals[i], intervals[i + 1]
+            if res and int1[1] >= int2[0]:
                 # overlap
-                int1 = res[-1]
-                int1[1] = max(int1[1], int2[1])
+                int2[1] = max(int1[1], int2[1])
             else:
-                res.append(int2)
+                res.append(int1)
         return res
 # @lc code=end
-print(Solution().merge([[1,3],[2,6],[8,10],[15,18]]))
+print(Solution().merge([[1,4],[0,0]]))
