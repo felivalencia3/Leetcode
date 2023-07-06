@@ -4,22 +4,19 @@
 # [53] Maximum Subarray
 #
 
+
 # @lc code=start
 class Solution:
     def maxSubArray(self, nums: list[int]) -> int:
-        l, r = 0, 0
-        maxSum = 0
-        sum_elems = []
-        while l < len(nums):
-            print(sum_elems)
-            
-            if r < len(nums) - 1 and nums[r + 1] > currMin:
-                r += 1
-            else:
-                sum_elems = nums[l: r + 1]
-                maxSum = sum(nums[l: r + 1])
-                l += 1
-                r = l
-        return maxSum
+        maxSub = nums[0]
+        curSum = 0
+
+        for n in nums:
+            if curSum < 0:
+                curSum = 0
+            curSum += n
+            maxSub = max(maxSub, curSum)
+        return maxSub
+
 # @lc code=end
-print(Solution().maxSubArray([-2,1,-3,4,-1,2,1,-5,4]))
+print(Solution().maxSubArray([-1, 2, 2, -3]))
