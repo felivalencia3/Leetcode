@@ -58,3 +58,26 @@ def klargest(arr: list[int], k: int) -> Optional[int]:
             heapq.heapreplace(min_heap, i)
 
     return min_heap[0]
+
+# Symmetric Tree Checker
+class TreeNode:
+    def __init__(self, value: int, left: "TreeNode", right: "TreeNode") -> None:
+        self.value = value
+        self.left = left
+        self.right = right
+
+def symmetric(root: TreeNode) -> bool:
+    if root is None:
+        return True
+    def symmetric_helper(root1: TreeNode, root2: TreeNode) -> bool:
+        if not root1 and not root2:
+            return True
+        if not root1 or not root2 or root1.value != root2.value:
+            return False
+        return symmetric_helper(root1.left, root2.right) and symmetric_helper(root1.right, root2.left)
+    return symmetric_helper(root.left, root.right)
+
+
+
+
+
