@@ -112,7 +112,20 @@ def gas_station(gas: list[int], cost: list[int]) -> int:
             maxPost = post_sum
             maxIndex = i
     return maxIndex 
-    
+def opti_gas_station(gas, cost):
+        net = [g - c for g, c in zip(gas, cost)]
+        if sum(net) < 0:
+            return -1
+        max_post_sum = 0
+        max_index = 0
+        curr_post_sum = 0
+        for i in range(len(net) - 1, -1, -1):
+            curr_post_sum += net[i]
+            if curr_post_sum > max_post_sum:
+                max_post_sum = curr_post_sum
+                max_index = i
+        return max_index
+
 print(gas_station(gas = [1,2,3,4,5], cost = [3,4,5,1,2]))
 print(gas_station([2,3,4], [3,4,3]))
 print(gas_station([3,3,4], [3,4,4]))
