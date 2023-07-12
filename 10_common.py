@@ -126,28 +126,29 @@ def opti_gas_station(gas, cost):
                 max_index = i
         return max_index
 
-print(gas_station(gas = [1,2,3,4,5], cost = [3,4,5,1,2]))
-print(gas_station([2,3,4], [3,4,3]))
-print(gas_station([3,3,4], [3,4,4]))
-print(gas_station([5,1,2,3,4], [4,4,1,5,1]))
+# Course Schedule
+def course_schedule(n: int, prerequisites: list[list[int]]) -> bool:
+    # build adj_lisTreeNode
+    graph = [[] for _ in range(n)]
+    indegree = [0] * n 
+    for course, prereq in prerequisites:
+        graph[prereq].append(course)
+        indegree[course] += 1
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    # create queue with nodes with no prerequisites
+    queue = collections.deque()
+    for i in range(n):
+        if indegree[i] == 0:
+             queue.append(i)
+    # do a topological sort
+    while queue:
+        course = queue.popleft()
+        n -= 1
+        for prereq in graph[course]:
+            indegree[prereq] -= 1
+            if indegree[prereq] == 0:
+                queue.append(prereq)
+    return n == 0
 
 
 
