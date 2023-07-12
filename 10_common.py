@@ -77,7 +77,22 @@ def symmetric(root: TreeNode) -> bool:
         return symmetric_helper(root1.left, root2.right) and symmetric_helper(root1.right, root2.left)
     return symmetric_helper(root.left, root.right)
 
+# Generate all the valid parentheses combinations
+def parentheses(n: int) -> list[str]:
+# recursive backtracking
+# Base Case: when no more remaining open or closed
+    combinations = []
+    def backtrack(open_rem: int, closed_rem: int, path: str) -> None:
+        if not open_rem and not closed_rem:
+            combinations.append(path)
+            return 
+        # if you're not at end, try to go left or right (if you can go right) and append to path
+        if open_rem:
+            backtrack(open_rem - 1, closed_rem, path + "(")
 
-
+        if open_rem < closed_rem and closed_rem:
+            backtrack(open_rem, closed_rem - 1, path + ")")
+    backtrack(n, n, "")
+    return combinations
 
 
