@@ -95,4 +95,46 @@ def parentheses(n: int) -> list[str]:
     backtrack(n, n, "")
     return combinations
 
+# find index of station where you can start and traverse all the way around without running out of gas.
+def gas_station(gas: list[int], cost: list[int]) -> int:
+    # post fix sum of diff
+    diff = [gas[i] - cost[i] for i in range(len(gas))]
+    if sum(diff) < 0:
+        return -1
+    post = [0] * len(gas)
+    post[-1] = diff[-1]
+    maxPost = post[-1] 
+    maxIndex = len(gas) - 1
+    for i in range(len(gas) - 2, -1, -1):
+        post_sum = post[i + 1] + diff[i]
+        post[i] = post_sum
+        if post_sum > maxPost:
+            maxPost = post_sum
+            maxIndex = i
+    return maxIndex 
+    
+print(gas_station(gas = [1,2,3,4,5], cost = [3,4,5,1,2]))
+print(gas_station([2,3,4], [3,4,3]))
+print(gas_station([3,3,4], [3,4,4]))
+print(gas_station([5,1,2,3,4], [4,4,1,5,1]))
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
