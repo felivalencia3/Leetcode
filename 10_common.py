@@ -1,4 +1,5 @@
 #1. Valid Anagram
+import itertools
 import collections
 import heapq
 from typing import Optional
@@ -69,12 +70,12 @@ class TreeNode:
 def symmetric(root: TreeNode) -> bool:
     if root is None:
         return True
-    def symmetric_helper(root1: TreeNode, root2: TreeNode) -> bool:
-        if not root1 and not root2:
+    def symmetric_helper(firstroot: TreeNode, secondroot: TreeNode) -> bool:
+        if not firstroot and not secondroot:
             return True
-        if not root1 or not root2 or root1.value != root2.value:
+        if not firstroot or not secondroot or firstroot.value != secondroot.value:
             return False
-        return symmetric_helper(root1.left, root2.right) and symmetric_helper(root1.right, root2.left)
+        return symmetric_helper(firstroot.left, secondroot.right) and symmetric_helper(firstroot.right, secondroot.left)
     return symmetric_helper(root.left, root.right)
 
 # Generate all the valid parentheses combinations
@@ -150,5 +151,19 @@ def course_schedule(n: int, prerequisites: list[list[int]]) -> bool:
                 queue.append(prereq)
     return n == 0
 
+def k_permutations(n: int, k: int) -> str:
+    fact = [1] * (n + 1)
+    fact[1:] = [i * fact[i - 1] for i in range(1, n + 1)]
+    k = k - 1
+    unused_elements = list(range(1, n + 1))
+    res = ""
 
+    while n:
+        bucket_length = fact[n] // n
+        bucket = k // bucket_length
+        res += str(unused_elements.pop(bucket))
+        k = k % bucket_length
+        n = n - 1
+    return res
 
+print(k_permutations(4, 3))
