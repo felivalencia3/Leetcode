@@ -166,4 +166,10 @@ def k_permutations(n: int, k: int) -> str:
         n = n - 1
     return res
 
-print(k_permutations(4, 3))
+# template for finding substring that satisfies some restriction
+def find_substring_template(s: str) -> str:
+    print("hey")
+
+find_substring_template("")
+
+ 
