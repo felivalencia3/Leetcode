@@ -166,10 +166,25 @@ def k_permutations(n: int, k: int) -> str:
         n = n - 1
     return res
 
-# template for finding substring that satisfies some restriction
-def find_substring_template(s: str) -> str:
-    print("hey")
+def largest_rectangle(heights: list[int]) -> int:
+    l, r = 0, 0
+    currMinIndex = l 
+    maxArea = 0
+    while l < len(heights):
+        if heights[currMinIndex] <= (r - l + 1):
+            currMinIndex = r + 1
+            l = r = currMinIndex
+            continue
+        r += 1
+        maxArea = max(maxArea, heights[currMinIndex] * (r - l + 1))
+        if r < len(heights) and heights[r] < heights[currMinIndex]:
+                currMinIndex = r
+        else:
+            l += 1
+    return maxArea
 
-find_substring_template("")
+print(largest_rectangle([2,1,5,6,2,3])) 
+    
 
- 
+
+
