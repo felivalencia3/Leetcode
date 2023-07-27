@@ -23,4 +23,5 @@ class Solution(object):
                 countGap[total] = 1 + countGap.get(total, 0)
                 # add 1 to the gap count at that position, add 1 to 0 (default) if does not exist in map yet
         return len(wall) - max(countGap.values())
-# @lc code=end
+
+    # @lc code=end
