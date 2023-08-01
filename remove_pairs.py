@@ -12,5 +12,20 @@ def solution(s: str) -> Optional[str]:
             counter[char][0] %= 2
             counter[char][1].append(i)
     counter = {key: value[1] for key, value in counter.items() if value[0] == 1}
-    print(sorted(counter.keys())) 
-print(solution("CBCAAXA"))
+    print(counter)
+    
+    def dp(word: str, choices: list, last_idx: int) -> str:
+        if len(word) == len(counter.keys()):
+            return word
+
+        res = "ZZ"
+        for char in choices:
+            for idx in counter[char]:
+                if idx > last_idx:
+                    new_choices = choices.copy()
+                    new_choices.remove(char)
+                    res = min(res, dp(word + char, new_choices, idx))
+        return res
+    return dp("", list(counter.keys()), -1)
+
+print(solution("ZYXZYZY"))
